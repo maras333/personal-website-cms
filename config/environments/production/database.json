@@ -1,0 +1,15 @@
+{
+  "defaultConnection": "default",
+  "connections": {
+    "default": {
+      "connector": "mongoose",
+      "settings": {
+        "uri": "mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@booksandauthorsgql-shard-00-00-asso8.mongodb.net:27017,booksandauthorsgql-shard-00-01-asso8.mongodb.net:27017,booksandauthorsgql-shard-00-02-asso8.mongodb.net:27017/test?ssl=true&replicaSet=BooksAndAuthorsGQL-shard-0&authSource=admin&retryWrites=true&w=majority",
+        "database": "${process.env.DB_NAME}"
+      },
+      "options": {
+        "useNullAsDefault": true
+      }
+    }
+  }
+}
