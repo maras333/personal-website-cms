@@ -1,5 +1,7 @@
 'use strict';
+
 const slugify = require('slugify');
+const axios = require('axios');
 /**
  * Lifecycle callbacks for the `post` model.
  */
@@ -15,7 +17,7 @@ module.exports = {
 
   // After saving a value.
   // Fired after an `insert` or `update` query.
-  // afterSave: async (model, response, options) => {},
+  afterSave: async (model, response, options) => {},
 
   // Before fetching a value.
   // Fired before a `fetch` operation.
@@ -39,7 +41,14 @@ module.exports = {
 
   // After creating a value.
   // Fired after an `insert` query.
-  // afterCreate: async (model, attrs, options) => {},
+  afterCreate: async (model, attrs, options) => {
+    console.log('afterCreate');
+    axios
+      .post(strapi.config.environments.production.staticWebsiteBuildURL, model)
+      .catch(() => {
+        // Ignore
+      });    
+  },
 
   // Before updating a value.
   // Fired before an `update` query.
@@ -53,7 +62,20 @@ module.exports = {
 
   // After updating a value.
   // Fired after an `update` query.
-  // afterUpdate: async (model, attrs, options) => {},
+  afterUpdate: async (model, attrs, options) => {
+    console.log('afterUpdate');
+    execFile('../../build.sh', (error,stdout,stderror) => {
+      if (error) {
+        throw error;
+      }
+      console.log(stdout);
+    });    
+    axios
+      .post(strapi.config.environments.production.staticWebsiteBuildURL, model)
+      .catch(() => {
+        // Ignore
+      });    
+  },
 
   // Before destroying a value.
   // Fired before a `delete` query.
@@ -61,5 +83,12 @@ module.exports = {
 
   // After destroying a value.
   // Fired after a `delete` query.
-  // afterDestroy: async (model, attrs, options) => {}
+  afterDestroy: async (model, attrs, options) => {
+    console.log('afterDestroy');
+    axios
+      .post(strapi.config.environments.production.staticWebsiteBuildURL, model)
+      .catch(() => {
+        // Ignore
+      });    
+  }
 };
