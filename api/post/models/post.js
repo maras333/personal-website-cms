@@ -64,12 +64,6 @@ module.exports = {
   // Fired after an `update` query.
   afterUpdate: async (model, attrs, options) => {
     console.log('afterUpdate');
-    execFile('../../build.sh', (error,stdout,stderror) => {
-      if (error) {
-        throw error;
-      }
-      console.log(stdout);
-    });    
     axios
       .post(strapi.config.environments.production.staticWebsiteBuildURL, model)
       .catch(() => {
