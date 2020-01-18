@@ -72,7 +72,6 @@ module.exports = {
       .post(strapi.config.environments.production.staticWebsiteBuildURL, model)
       .catch(() => {
         // Ignore
-      });    
-    }    
+      });        
   }
 };
