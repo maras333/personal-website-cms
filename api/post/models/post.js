@@ -44,7 +44,7 @@ module.exports = {
   afterCreate: async (model, attrs, options) => {
     console.log('rebuild posts');
     axios
-      .post(strapi.config.environments.production.staticWebsiteBuildURL, model)
+      .post(strapi.config.environments.production.staticWebsiteBuildURL, {})
       .catch(() => {
         // Ignore
       });    
@@ -65,7 +65,7 @@ module.exports = {
   afterUpdate: async (model, attrs, options) => {
     console.log('rebuild posts');
     axios
-      .post(strapi.config.environments.production.staticWebsiteBuildURL, model)
+      .post(strapi.config.environments.production.staticWebsiteBuildURL, {})
       .catch(() => {
         // Ignore
       });    
@@ -80,7 +80,7 @@ module.exports = {
   afterDestroy: async (model, attrs, options) => {
     console.log('rebuild posts');
     axios
-      .post(strapi.config.environments.production.staticWebsiteBuildURL, model)
+      .post(strapi.config.environments.production.staticWebsiteBuildURL, {})
       .catch(() => {
         // Ignore
       });    
