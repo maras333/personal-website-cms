@@ -11,13 +11,13 @@ module.exports = {
   // Fired before an `insert` or `update` query.
   beforeSave: async (model, attrs, options) => {
     if (model.title) {
-      model.slug = slugify(model.title);
+      model.slug = slugify(model.title).toLowerCase();
     }    
   },
 
   // After saving a value.
   // Fired after an `insert` or `update` query.
-  afterSave: async (model, response, options) => {},
+  // afterSave: async (model, response, options) => {},
 
   // Before fetching a value.
   // Fired before a `fetch` operation.
@@ -42,7 +42,6 @@ module.exports = {
   // After creating a value.
   // Fired after an `insert` query.
   afterCreate: async (model, attrs, options) => {
-    console.log('afterCreate');
     axios
       .post(strapi.config.environments.production.staticWebsiteBuildURL, model)
       .catch(() => {
@@ -63,7 +62,6 @@ module.exports = {
   // After updating a value.
   // Fired after an `update` query.
   afterUpdate: async (model, attrs, options) => {
-    console.log('afterUpdate');
     axios
       .post(strapi.config.environments.production.staticWebsiteBuildURL, model)
       .catch(() => {
@@ -78,7 +76,6 @@ module.exports = {
   // After destroying a value.
   // Fired after a `delete` query.
   afterDestroy: async (model, attrs, options) => {
-    console.log('afterDestroy');
     axios
       .post(strapi.config.environments.production.staticWebsiteBuildURL, model)
       .catch(() => {
