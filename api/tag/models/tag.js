@@ -38,7 +38,7 @@ module.exports = {
   afterCreate: async (model, attrs, options) => {
     console.log('rebuild tags');
     axios
-    .post(strapi.config.environments.production.staticWebsiteBuildURL, {})
+    .post(process.env.BUILD_HOOK_STRAPI, {})
     .catch(() => {
       // Ignore
     });     
@@ -53,7 +53,7 @@ module.exports = {
   afterUpdate: async (model, attrs, options) => {
     console.log('rebuild tags');
     axios
-      .post(strapi.config.environments.production.staticWebsiteBuildURL, {})
+      .post(process.env.BUILD_HOOK_STRAPI, {})
       .catch(() => {
         // Ignore
       });       
@@ -68,7 +68,7 @@ module.exports = {
   afterDestroy: async (model, attrs, options) => {
     console.log('rebuild tags');
     axios
-      .post(strapi.config.environments.production.staticWebsiteBuildURL, {})
+      .post(process.env.BUILD_HOOK_STRAPI, {})
       .catch(() => {
         // Ignore
       });       
