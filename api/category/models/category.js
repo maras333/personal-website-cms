@@ -68,14 +68,14 @@ module.exports = {
 
   // After updating a value.
   // Fired after an `update` query.
-  afterUpdate: async (model, attrs, options) => {
-    console.log('rebuild categories');
-    axios
-      .post(process.env.BUILD_HOOK_STRAPI, {})
-      .catch(() => {
-        // Ignore
-      });     
-  },
+  // afterUpdate: async (model, attrs, options) => {
+  //   console.log('rebuild categories');
+  //   axios
+  //     .post(process.env.BUILD_HOOK_STRAPI, {})
+  //     .catch(() => {
+  //       // Ignore
+  //     });     
+  // },
 
   // Before destroying a value.
   // Fired before a `delete` query.

@@ -16,7 +16,14 @@ module.exports = {
 
   // After saving a value.
   // Fired after an `insert` or `update` query.
-  // afterSave: async (model, response, options) => {},
+  afterSave: async (model, response, options) => {
+    console.log('rebuild tags');
+    axios
+    .post(process.env.BUILD_HOOK_STRAPI, {})
+    .catch(() => {
+      // Ignore
+    });    
+  },
 
   // Before fetching a value.
   // Fired before a `fetch` operation.
@@ -51,24 +58,24 @@ module.exports = {
 
   // Before updating a value.
   // Fired before an `update` query.
-  beforeUpdate: async (model, attrs, options) => {
-    if (model.getUpdate().name) {
-      model.update({
-        slug: slugify(model.getUpdate().name),
-      });
-    }     
-  },
+  // beforeUpdate: async (model, attrs, options) => {
+  //   if (model.getUpdate().name) {
+  //     model.update({
+  //       slug: slugify(model.getUpdate().name),
+  //     });
+  //   }     
+  // },
 
   // After updating a value.
   // Fired after an `update` query.
-  afterUpdate: async (model, attrs, options) => {
-    console.log('rebuild tags');
-    axios
-      .post(process.env.BUILD_HOOK_STRAPI, {})
-      .catch(() => {
-        // Ignore
-      });       
-  },
+  // afterUpdate: async (model, attrs, options) => {
+  //   console.log('rebuild tags');
+  //   axios
+  //     .post(process.env.BUILD_HOOK_STRAPI, {})
+  //     .catch(() => {
+  //       // Ignore
+  //     });       
+  // },
 
   // Before destroying a value.
   // Fired before a `delete` query.
