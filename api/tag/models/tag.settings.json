@@ -18,8 +18,11 @@
       "type": "text"
     },
     "posts": {
-      "via": "tags",
-      "collection": "post"
+      "collection": "post",
+      "via": "tags"
+    },
+    "slug": {
+      "type": "string"
     }
   }
 }

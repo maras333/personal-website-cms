@@ -1,4 +1,5 @@
 'use strict';
+const slugify = require('slugify');
 const axios = require('axios');
 /**
  * Lifecycle callbacks for the `tag` model.
@@ -7,7 +8,11 @@ const axios = require('axios');
 module.exports = {
   // Before saving a value.
   // Fired before an `insert` or `update` query.
-  // beforeSave: async (model, attrs, options) => {},
+  beforeSave: async (model, attrs, options) => {
+    if (model.name) {
+      model.slug = slugify(model.name).toLowerCase();
+    }     
+  },
 
   // After saving a value.
   // Fired after an `insert` or `update` query.
@@ -46,7 +51,13 @@ module.exports = {
 
   // Before updating a value.
   // Fired before an `update` query.
-  // beforeUpdate: async (model, attrs, options) => {},
+  beforeUpdate: async (model, attrs, options) => {
+    if (model.getUpdate().name) {
+      model.update({
+        slug: slugify(model.getUpdate().name),
+      });
+    }     
+  },
 
   // After updating a value.
   // Fired after an `update` query.

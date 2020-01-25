@@ -39,8 +39,8 @@
       "via": "posts"
     },
     "tags": {
-      "collection": "tag",
       "via": "posts",
+      "collection": "tag",
       "dominant": true
     },
     "slug": {
