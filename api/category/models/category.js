@@ -51,13 +51,13 @@ module.exports = {
 
   // Before updating a value.
   // Fired before an `update` query.
-  beforeUpdate: async (model, attrs, options) => {
-    if (model.getUpdate().name) {
-      model.update({
-        slug: slugify(model.getUpdate().name),
-      });
-    }     
-  },
+  // beforeUpdate: async (model, attrs, options) => {
+  //   if (model.getUpdate().name) {
+  //     model.update({
+  //       slug: slugify(model.getUpdate().name),
+  //     });
+  //   }     
+  // },
 
   // After updating a value.
   // Fired after an `update` query.
