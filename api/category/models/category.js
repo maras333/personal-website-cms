@@ -16,7 +16,14 @@ module.exports = {
 
   // After saving a value.
   // Fired after an `insert` or `update` query.
-  // afterSave: async (model, response, options) => {},
+  afterSave: async (model, response, options) => {
+    console.log('rebuild categories');
+    axios
+    .post(process.env.BUILD_HOOK_STRAPI, {})
+    .catch(() => {
+      // Ignore
+    });     
+  },
 
   // Before fetching a value.
   // Fired before a `fetch` operation.
@@ -40,14 +47,14 @@ module.exports = {
 
   // After creating a value.
   // Fired after an `insert` query.
-  afterCreate: async (model, attrs, options) => {
-    console.log('rebuild categories');
-    axios
-    .post(process.env.BUILD_HOOK_STRAPI, {})
-    .catch(() => {
-      // Ignore
-    });     
-  },
+  // afterCreate: async (model, attrs, options) => {
+  //   console.log('rebuild categories');
+  //   axios
+  //   .post(process.env.BUILD_HOOK_STRAPI, {})
+  //   .catch(() => {
+  //     // Ignore
+  //   });     
+  // },
 
   // Before updating a value.
   // Fired before an `update` query.
