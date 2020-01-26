@@ -45,7 +45,7 @@
       "path": "/tags/:id",
       "handler": "tag.delete",
       "config": {
-        "policies": []
+        "policies": ["hasPosts"]
       }
     }
   ]

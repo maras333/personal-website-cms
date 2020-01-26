@@ -45,7 +45,7 @@
       "path": "/categories/:id",
       "handler": "category.delete",
       "config": {
-        "policies": []
+        "policies": ["hasPosts"]
       }
     }
   ]
